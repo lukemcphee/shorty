@@ -1,0 +1,5 @@
+# dune init project shorty
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Workspace root: /Users/luke/code/shorty
+# Auto-detected concurrency: 4
