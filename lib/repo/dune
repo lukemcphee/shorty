@@ -1,0 +1,4 @@
+(library
+ (name repo)
+ (libraries caqti caqti-driver-postgresql caqti-lwt.unix)
+)

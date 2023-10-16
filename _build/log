@@ -1,5 +1,103 @@
-# dune init project shorty
+# dune utop .
 # OCAMLPARAM: unset
 # Shared cache: disabled
 # Workspace root: /Users/luke/code/shorty
 # Auto-detected concurrency: 4
+$ /Users/luke/.opam/default/bin/ocamlc.opt -config > /var/folders/13/2v61hprj6yzbw32pgvpbb_ch0000gn/T/dune_f916e8_output
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; for_host = None
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; ocaml_bin = External "/Users/luke/.opam/default/bin"
+#  ; ocaml = Ok External "/Users/luke/.opam/default/bin/ocaml"
+#  ; ocamlc = External "/Users/luke/.opam/default/bin/ocamlc.opt"
+#  ; ocamlopt = Ok External "/Users/luke/.opam/default/bin/ocamlopt.opt"
+#  ; ocamldep = Ok External "/Users/luke/.opam/default/bin/ocamldep.opt"
+#  ; ocamlmklib = Ok External "/Users/luke/.opam/default/bin/ocamlmklib"
+#  ; installed_env =
+#      map
+#        { "INSIDE_DUNE" : "/Users/luke/code/shorty/_build/default"
+#        ; "OCAML_COLOR" : "always"
+#        ; "OPAMCOLOR" : "always"
+#        }
+#  ; findlib_paths =
+#      [ External "/Users/luke/.opam/default/lib/ocaml"
+#      ; External "/Users/luke/.opam/default/lib"
+#      ]
+#  ; ocaml_config =
+#      { version = "5.1.0"
+#      ; standard_library_default = "/Users/luke/.opam/default/lib/ocaml"
+#      ; standard_library = "/Users/luke/.opam/default/lib/ocaml"
+#      ; standard_runtime = "the_standard_runtime_variable_was_deleted"
+#      ; ccomp_type = "cc"
+#      ; c_compiler = "cc"
+#      ; ocamlc_cflags =
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-pthread" ]
+#      ; ocamlc_cppflags = [ "-D_FILE_OFFSET_BITS=64" ]
+#      ; ocamlopt_cflags =
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-pthread" ]
+#      ; ocamlopt_cppflags = [ "-D_FILE_OFFSET_BITS=64" ]
+#      ; bytecomp_c_compiler =
+#          [ "cc"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-pthread"
+#          ; "-D_FILE_OFFSET_BITS=64"
+#          ]
+#      ; bytecomp_c_libraries = [ "-lpthread" ]
+#      ; native_c_compiler =
+#          [ "cc"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-pthread"
+#          ; "-D_FILE_OFFSET_BITS=64"
+#          ]
+#      ; native_c_libraries = [ "-lpthread" ]
+#      ; native_pack_linker = [ "ld"; "-r"; "-o" ]
+#      ; cc_profile = []
+#      ; architecture = "amd64"
+#      ; model = "default"
+#      ; int_size = 63
+#      ; word_size = 64
+#      ; system = "macosx"
+#      ; asm = [ "cc"; "-c"; "-Wno-trigraphs" ]
+#      ; asm_cfi_supported = true
+#      ; with_frame_pointers = false
+#      ; ext_exe = ""
+#      ; ext_obj = ".o"
+#      ; ext_asm = ".s"
+#      ; ext_lib = ".a"
+#      ; ext_dll = ".so"
+#      ; os_type = "Unix"
+#      ; default_executable_name = "a.out"
+#      ; systhread_supported = true
+#      ; host = "x86_64-apple-darwin20.3.0"
+#      ; target = "x86_64-apple-darwin20.3.0"
+#      ; profiling = false
+#      ; flambda = false
+#      ; spacetime = false
+#      ; safe_string = true
+#      ; exec_magic_number = "Caml1999X033"
+#      ; cmi_magic_number = "Caml1999I033"
+#      ; cmo_magic_number = "Caml1999O033"
+#      ; cma_magic_number = "Caml1999A033"
+#      ; cmx_magic_number = "Caml1999Y033"
+#      ; cmxa_magic_number = "Caml1999Z033"
+#      ; ast_impl_magic_number = "Caml1999M033"
+#      ; ast_intf_magic_number = "Caml1999N033"
+#      ; cmxs_magic_number = "Caml1999D033"
+#      ; cmt_magic_number = "Caml1999T033"
+#      ; natdynlink_supported = true
+#      ; supports_shared_libraries = true
+#      ; windows_unicode = false
+#      }
+#  ; instrument_with = []
+#  }
+$ (cd _build/default && /Users/luke/.opam/default/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -24 -g -bin-annot -I .utop/.utop.eobjs/byte -I /Users/luke/.opam/default/lib/angstrom -I /Users/luke/.opam/default/lib/bigstringaf -I /Users/luke/.opam/default/lib/bytes -I /Users/luke/.opam/default/lib/caqti -I /Users/luke/.opam/default/lib/caqti-driver-postgresql -I /Users/luke/.opam/default/lib/caqti-lwt -I /Users/luke/.opam/default/lib/caqti-lwt/unix -I /Users/luke/.opam/default/lib/caqti/platform -I /Users/luke/.opam/default/lib/caqti/platform/unix -I /Users/luke/.opam/default/lib/domain-name -I /Users/luke/.opam/default/lib/findlib -I /Users/luke/.opam/default/lib/ipaddr -I /Users/luke/.opam/default/lib/lambda-term -I /Users/luke/.opam/default/lib/logs -I /Users/luke/.opam/default/lib/lwt -I /Users/luke/.opam/default/lib/lwt-dllist -I /Users/luke/.opam/default/lib/lwt/unix -I /Users/luke/.opam/default/lib/lwt_react -I /Users/luke/.opam/default/lib/macaddr -I /Users/luke/.opam/default/lib/mew -I /Users/luke/.opam/default/lib/mew_vi -I /Users/luke/.opam/default/lib/mtime -I /Users/luke/.opam/default/lib/mtime/clock/os -I /Users/luke/.opam/default/lib/ocaml/compiler-libs -I /Users/luke/.opam/default/lib/ocaml/threads -I /Users/luke/.opam/default/lib/ocaml/unix -I /Users/luke/.opam/default/lib/ocplib-endian -I /Users/luke/.opam/default/lib/ocplib-endian/bigstring -I /Users/luke/.opam/default/lib/postgresql -I /Users/luke/.opam/default/lib/ptime -I /Users/luke/.opam/default/lib/react -I /Users/luke/.opam/default/lib/result -I /Users/luke/.opam/default/lib/stringext -I /Users/luke/.opam/default/lib/trie -I /Users/luke/.opam/default/lib/uchar -I /Users/luke/.opam/default/lib/uri -I /Users/luke/.opam/default/lib/utop -I /Users/luke/.opam/default/lib/uucp -I /Users/luke/.opam/default/lib/uuseg -I /Users/luke/.opam/default/lib/uutf -I /Users/luke/.opam/default/lib/xdg -I /Users/luke/.opam/default/lib/zed -I lib/repo/.repo.objs/byte -no-alias-deps -o .utop/.utop.eobjs/byte/dune__exe__Utop.cmo -c -impl .utop/utop.ml-gen)
+$ (cd _build/default && /Users/luke/.opam/default/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -24 -g -o .utop/utop.bc /Users/luke/.opam/default/lib/ocaml/compiler-libs/ocamlcommon.cma /Users/luke/.opam/default/lib/ocaml/compiler-libs/ocamlbytecomp.cma /Users/luke/.opam/default/lib/ocaml/compiler-libs/ocamltoplevel.cma /Users/luke/.opam/default/lib/findlib/findlib.cma /Users/luke/.opam/default/lib/findlib/findlib_top.cma /Users/luke/.opam/default/lib/logs/logs.cma /Users/luke/.opam/default/lib/lwt/lwt.cma /Users/luke/.opam/default/lib/logs/logs_lwt.cma /Users/luke/.opam/default/lib/ocplib-endian/ocplib_endian.cma /Users/luke/.opam/default/lib/ocplib-endian/bigstring/ocplib_endian_bigstring.cma /Users/luke/.opam/default/lib/ocaml/unix/unix.cma /Users/luke/.opam/default/lib/ocaml/threads/threads.cma /Users/luke/.opam/default/lib/lwt/unix/lwt_unix.cma -I /Users/luke/.opam/default/lib/lwt/../stublibs /Users/luke/.opam/default/lib/react/react.cma /Users/luke/.opam/default/lib/lwt_react/lwt_react.cma /Users/luke/.opam/default/lib/result/result.cma /Users/luke/.opam/default/lib/uutf/uutf.cma /Users/luke/.opam/default/lib/uucp/uucp.cma /Users/luke/.opam/default/lib/uuseg/uuseg.cma /Users/luke/.opam/default/lib/zed/zed.cma /Users/luke/.opam/default/lib/trie/trie.cma /Users/luke/.opam/default/lib/mew/mew.cma /Users/luke/.opam/default/lib/mew_vi/mew_vi.cma /Users/luke/.opam/default/lib/lambda-term/lambda_term.cma -I /Users/luke/.opam/default/lib/lambda-term/../stublibs /Users/luke/.opam/default/lib/xdg/xdg.cma -I /Users/luke/.opam/default/lib/xdg/../stublibs /Users/luke/.opam/default/lib/utop/uTop.cma /Users/luke/.opam/default/lib/bigstringaf/bigstringaf.cma -I /Users/luke/.opam/default/lib/bigstringaf/../stublibs /Users/luke/.opam/default/lib/angstrom/angstrom.cma /Users/luke/.opam/default/lib/mtime/mtime.cma /Users/luke/.opam/default/lib/ptime/ptime.cma /Users/luke/.opam/default/lib/stringext/stringext.cma /Users/luke/.opam/default/lib/uri/uri.cma /Users/luke/.opam/default/lib/caqti/caqti.cma /Users/luke/.opam/default/lib/domain-name/domain_name.cma /Users/luke/.opam/default/lib/macaddr/macaddr.cma /Users/luke/.opam/default/lib/ipaddr/ipaddr.cma /Users/luke/.opam/default/lib/lwt-dllist/lwt_dllist.cma /Users/luke/.opam/default/lib/mtime/clock/os/mtime_clock.cma /Users/luke/.opam/default/lib/caqti/platform/caqti_platform.cma /Users/luke/.opam/default/lib/caqti/platform/unix/caqti_platform_unix.cma /Users/luke/.opam/default/lib/postgresql/postgresql.cma -I /Users/luke/.opam/default/lib/postgresql/../stublibs /Users/luke/.opam/default/lib/caqti-driver-postgresql/caqti_driver_postgresql.cma /Users/luke/.opam/default/lib/caqti-lwt/caqti_lwt.cma /Users/luke/.opam/default/lib/caqti-lwt/unix/caqti_lwt_unix.cma lib/repo/repo.cma .utop/.utop.eobjs/byte/dune__exe__Utop.cmo -linkall -warn-error -31)

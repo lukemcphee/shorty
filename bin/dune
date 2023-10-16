@@ -1,4 +1,6 @@
 (executable
  (public_name shorty)
  (name main)
- (libraries shorty))
+ (libraries repo lwt)
+ (preprocess (pps lwt_ppx))
+)

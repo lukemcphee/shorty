@@ -19,7 +19,13 @@
  (name shorty)
  (synopsis "A short synopsis")
  (description "A longer description")
- (depends ocaml dune)
+ (depends ocaml dune
+lwt
+lwt_ppx
+caqti
+caqti-lwt
+caqti-driver-postgresql
+)
  (tags
   (topics "to describe" your project)))
 
