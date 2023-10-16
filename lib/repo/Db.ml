@@ -1,10 +1,5 @@
 module Entry = struct
-  type t = {
-        id : int;
-  short_url : string;
-  target_url : string;
-
-  }
+  type t = { id : int; short_url : string; target_url : string }
 end
 
 module Q = struct
@@ -23,20 +18,36 @@ module Q = struct
   let add =
     Caqti_type.(t2 int int ->! int)
     "SELECT ? + ?"
-  [@@ocamlformat "disable"]
+    [@@ocamlformat "disable"]
 
- let bike =
-    let open Bike in
-    let intro frameno owner stolen = {frameno; owner; stolen} in
-    product intro
-      @@ proj string (fun bike -> bike.frameno)
-      @@ proj string (fun bike -> bike.owner)
-      @@ proj (option ptime) (fun bike -> bike.stolen)
-      @@ proj_end
+  let insert =
+    Caqti_type.(t3 int string string ->! int)
+      {|
+       INSERT INTO entry (id, short_url, target_url)
+       VALUES (?, ?, ?) RETURNING id
+      |}
+
+
+  let select =
+    Caqti_type.(unit ->* t3 int string string )
+      {|
+       SELECT id
+            , short_url
+            , target_url
+       FROM entry 
+      |}
 end
-
 let add (module Conn : Caqti_lwt.CONNECTION) a b =
   Conn.find Q.add (a, b)
+[@@ocamlformat "disable"]
+
+let insert (module Conn : Caqti_lwt.CONNECTION) short_url target_url =
+  let id = Random.int 10000 in 
+  Conn.find Q.insert (id ,short_url ,target_url)
+[@@ocamlformat "disable"]
+
+let find_all(module Conn : Caqti_lwt.CONNECTION) =
+  Conn.collect_list Q.select ()
 [@@ocamlformat "disable"]
 
 let resolve_ok_exn promise =
