@@ -1,4 +1,4 @@
-let get_uri () = "postgres"
+let get_uri () = "postgres://example-username:pass@localhost:5432/shorty-db"
 
 let connect () =
   let uri = get_uri () in
