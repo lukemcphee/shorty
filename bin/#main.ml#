@@ -1,9 +1,1 @@
-open Caqti_request.Infix
-open Caqti_type
-
-let something = Caqti_type.(unit ->! unit)
-let count = (unit ->! int) {|
-    SELECT COUNT(*) FROM book
-    |}
-let count (module Conn : Caqti_lwt.CONNECTION) = Conn.find count ()
 let () = print_endline "Hello, World!"

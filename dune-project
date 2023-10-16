@@ -20,11 +20,12 @@
  (synopsis "A short synopsis")
  (description "A longer description")
  (depends ocaml dune
-lwt
-lwt_ppx
-caqti
-caqti-lwt
-caqti-driver-postgresql
+  lwt
+  lwt_ppx
+  caqti
+  caqti-lwt
+  caqti-driver-postgresql
+  ppx_inline_test
 )
  (tags
   (topics "to describe" your project)))
