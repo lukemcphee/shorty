@@ -1,3 +1,12 @@
+module Entry = struct
+  type t = {
+        id : int;
+  short_url : string;
+  target_url : string;
+
+  }
+end
+
 module Q = struct
   open Caqti_request.Infix
 
@@ -15,6 +24,15 @@ module Q = struct
     Caqti_type.(t2 int int ->! int)
     "SELECT ? + ?"
   [@@ocamlformat "disable"]
+
+ let bike =
+    let open Bike in
+    let intro frameno owner stolen = {frameno; owner; stolen} in
+    product intro
+      @@ proj string (fun bike -> bike.frameno)
+      @@ proj string (fun bike -> bike.owner)
+      @@ proj (option ptime) (fun bike -> bike.stolen)
+      @@ proj_end
 end
 
 let add (module Conn : Caqti_lwt.CONNECTION) a b =
