@@ -3,8 +3,7 @@ let str_error promise =
       res |> Result.map_error Caqti_error.show |> Lwt.return)
 
 
-let drop_first_from_triple triple = let (_, b, c) = triple in
-                                    (b,c)
+let drop_first_from_triple triple = let (_, b, c) = triple in (b,c)
 
 
 let%test_unit "PostgreSQL: add (asynchronously)" =
