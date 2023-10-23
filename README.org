@@ -1,0 +1,10 @@
+#+TITLE:Simple url shortener
+#+DATE:2023-10-23
+#+AUTHOR:Luke McPhee
+
+
+
+
+let run = let conn = Util.connect_exn () in
+let result = Db.insert conn "hello" "world" in
+Lwt_main.run result;;
