@@ -18,6 +18,7 @@ depends: [
   "caqti-lwt"
   "caqti-driver-postgresql"
   "ppx_inline_test"
+  "opium"
   "odoc" {with-doc}
 ]
 build: [

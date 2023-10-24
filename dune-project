@@ -26,6 +26,8 @@
   caqti-lwt
   caqti-driver-postgresql
   ppx_inline_test
+  ; api
+  opium
 )
  (tags
   (topics "to describe" your project)))

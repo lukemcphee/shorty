@@ -4,6 +4,7 @@ let connect () =
   let uri = get_uri () in
   Caqti_lwt_unix.connect (Uri.of_string uri)
 
+
 (** For `utop` interactions interactions. See `README.md`.
  *)
 let connect_exn () =

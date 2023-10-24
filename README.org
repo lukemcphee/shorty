@@ -3,6 +3,7 @@
 #+AUTHOR:Luke McPhee
 
 
+MAKE SURE YOU INSTALL THE CORRECT DEP's
 
 
 let run = let conn = Util.connect_exn () in
