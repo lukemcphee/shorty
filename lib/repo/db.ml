@@ -1,9 +1,13 @@
 module Entry = struct
-  type t = { id : int; short_url : string; target_url : string }
+  type t = { id : int; short_url : string; target_url : string }[@@deriving yojson]
+
+  type ts = t list
   let tuple_to_entry tup =
                     let (a,b,c) = tup in
                     let entry: t = {id = a; short_url = b; target_url = c} in
                     entry
+
+  let to_json (a: t) = to_yojson a
 end
 
 module Q = struct

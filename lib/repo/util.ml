@@ -4,6 +4,10 @@ let get_uri () = "postgres://example-username:pass@localhost:5432/shorty-db"
 (*   Lwt.bind promise (fun res -> *)
 (*       res |> Result.map_error Caqti_error.show |> Lwt.return) *)
 
+let str_error promise =
+  Lwt.bind promise (fun res ->
+      res |> Result.map_error Caqti_error.show |> Lwt.return)
+
 let connect () =
   let uri = get_uri () in
   Caqti_lwt_unix.connect (Uri.of_string uri)

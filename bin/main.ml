@@ -1,19 +1,36 @@
 open Opium
+open Repo
+open Repo.Db
 
-let yojson_example = `Assoc [ ("name", `String "hello luke") ]
+module Local = struct
+  type entry_list = Entry.t list [@@deriving yojson]
+  let json  entry_list = entry_list_to_yojson entry_list 
+end
+    
+let yojson_example name = `Assoc [ ("name", `String ("hello " ^ name)) ]
 
-(* let find_all _ = *)
-(*   let ( let* ) = Lwt_result.bind in *)
-(*   let* conn = Util.connect () in *)
-(*   let res = Db.find_all conn |> str_error in *)
-(*   let _ = Lwt.bind res (fun r -> Lwt.return r) in *)
-(*   Response.of_json yojson_example *)
+let convert_to_response r =
+  let as_json = Response.of_json @@ Local.json r in 
+  Lwt_result.return as_json
 
-let find_all _ = Lwt.return @@ Response.of_json yojson_example
+let find_all _ =
+  let output = let ( let* ) = Lwt_result.bind in
+    let* conn = Util.connect () in
+    (* let res = Db.find_all conn |> Util.str_error in *)
+    let res = Db.find_all conn  in
+    let out = Lwt_result.bind res convert_to_response in
+    out
+  in 
+  Lwt.bind output (fun r ->
+      match r with
+      | Ok r -> Lwt.return r
+      | Error _ -> raise @@ Failure ""
+    )
+
 
 let print_param_handler req =
-  Printf.sprintf "Hello, %s\n" (Router.param req "name")
-  |> Response.of_plain_text |> Lwt.return
+   yojson_example (Router.param req "name")
+  |> Response.of_json |> Lwt.return
 
 let _ =
   App.empty

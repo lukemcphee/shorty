@@ -1,3 +1,5 @@
 (library
  (name repo)
- (libraries caqti caqti-driver-postgresql caqti-lwt.unix))
+ (libraries caqti caqti-driver-postgresql caqti-lwt.unix yojson core ppx_deriving_yojson.runtime)
+ (preprocess (pps ppx_deriving_yojson))
+)

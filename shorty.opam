@@ -14,10 +14,12 @@ depends: [
   "dune" {>= "3.11"}
   "lwt"
   "lwt_ppx"
+  "core"
   "caqti"
   "caqti-lwt"
   "caqti-driver-postgresql"
   "ppx_inline_test"
+  "ppx_deriving_yojson"
   "opium"
   "odoc" {with-doc}
 ]

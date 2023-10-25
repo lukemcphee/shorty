@@ -22,10 +22,12 @@
  (depends ocaml dune
   lwt
   lwt_ppx
+  core
   caqti
   caqti-lwt
   caqti-driver-postgresql
   ppx_inline_test
+  ppx_deriving_yojson
   ; api
   opium
 )

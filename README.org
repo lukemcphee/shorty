@@ -9,3 +9,7 @@ MAKE SURE YOU INSTALL THE CORRECT DEP's
 let run = let conn = Util.connect_exn () in
 let result = Db.insert conn "hello" "world" in
 Lwt_main.run result;;
+
+How to add in yojson
+(libraries  yojson core ppx_deriving_yojson.runtime)
+(preprocess (pps ppx_deriving_yojson))
