@@ -7,9 +7,7 @@ let str_error promise =
 (* let drop_id_from_entry triple = *)
 (*   let _, b, c = triple in *)
 (*   (b, c) *)
-let drop_id_from_entry triple =
-  (triple.short_url, triple.target_url)
-
+let drop_id_from_entry triple = (triple.short_url, triple.target_url)
 
 let%test_unit "PostgreSQL: add (asynchronously)" =
   let ( => ) = [%test_eq: (Base.int, Base.string) Base.Result.t] in
