@@ -1,6 +1,6 @@
 (executable
  (public_name shorty)
  (name main)
- (libraries repo lwt opium yojson core ppx_deriving_yojson.runtime)
+ (libraries repo lwt opium)
  (preprocess
-  (pps lwt_ppx ppx_deriving_yojson)))
+  (pps lwt_ppx)))

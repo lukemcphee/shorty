@@ -1,15 +1,15 @@
-module Entry = struct
-  type t = { id : int; short_url : string; target_url : string }
-  [@@deriving yojson]
+module Model = struct
+  type entry = { short_url : string; target_url : string } [@@deriving yojson]
+  type entry_list = entry list [@@deriving yojson]
 
-  type ts = t list
+  let entries_to_json entries = entry_list_to_yojson entries
 
   let tuple_to_entry tup =
-    let a, b, c = tup in
-    let entry : t = { id = a; short_url = b; target_url = c } in
+    let a, b = tup in
+    let entry : entry = { short_url = a; target_url = b } in
     entry
 
-  let to_json (a : t) = to_yojson a
+  let entry_to_json (a : entry) = entry_to_yojson a
 end
 
 module Q = struct
@@ -28,17 +28,16 @@ module Q = struct
   let add = Caqti_type.(t2 int int ->! int) "SELECT ? + ?"
 
   let insert =
-    Caqti_type.(t3 int string string ->! int)
+    Caqti_type.(t2 string string ->. unit)
       {|
-       INSERT INTO entry (id, short_url, target_url)
-       VALUES (?, ?, ?) RETURNING id
+       INSERT INTO entry (short_url, target_url)
+       VALUES (?, ?)
       |}
 
   let select =
-    Caqti_type.(unit ->* t3 int string string)
+    Caqti_type.(unit ->* t2 string string)
       {|
-       SELECT id
-            , short_url
+       SELECT short_url
             , target_url
        FROM entry 
       |}
@@ -47,13 +46,12 @@ end
 let add (module Conn : Caqti_lwt.CONNECTION) a b = Conn.find Q.add (a, b)
 
 let insert (module Conn : Caqti_lwt.CONNECTION) short_url target_url =
-  let id = Random.int 10000 in
-  Conn.find Q.insert (id, short_url, target_url)
+  Conn.exec Q.insert (short_url, target_url)
 
 let find_all (module Conn : Caqti_lwt.CONNECTION) =
   let result_tuples = Conn.collect_list Q.select () in
   Lwt_result.bind result_tuples (fun xs ->
-      let out = List.map Entry.tuple_to_entry xs in
+      let out = List.map Model.tuple_to_entry xs in
       Lwt_result.return out)
 
 let resolve_ok_exn promise =

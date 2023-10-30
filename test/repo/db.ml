@@ -1,4 +1,4 @@
-open Repo.Db.Entry
+open Repo.Db.Model
 
 let str_error promise =
   Lwt.bind promise (fun res ->
