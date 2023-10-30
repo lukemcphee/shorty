@@ -22,21 +22,26 @@ let find_all _ =
   o
 
 let put_entry req =
-  let local = 
+  let insert =
     let open Lwt.Syntax in
     let+ json = Request.to_json_exn req in
     let ( let* ) = Lwt_result.bind in
     let entry = Model.entry_of_yojson json in
     let* conn = Util.connect () in
-    let a =
-      match entry with
-      | Ok e -> Db.insert conn e.short_url e.target_url
-      | Error _ -> raise @@ Failure ""in 
-    a
+    match entry with
+    | Ok e -> Db.insert conn e.short_url e.target_url
+    | Error _ -> raise @@ Failure ""
   in
-  Lwt.bind local (fun _ ->
-      Lwt.return @@ Response.of_plain_text "") 
+  let bind_result insert_response =
+    Lwt.bind insert_response (fun bind_response ->
+        Lwt.return
+        @@
+        match bind_response with
+        | Ok _ -> Response.of_plain_text ""
+        | Error _ -> Response.of_plain_text "")
+  in
 
+  Lwt.bind insert bind_result
 (* let _ = *)
 (*   Lwt.bind body (fun b -> *)
 (*       let _ = Logs.info (fun l -> l "body is %s" b) in *)
@@ -48,7 +53,5 @@ let _ =
   Logs.set_reporter (Logs_fmt.reporter ());
   Logs.set_level (Some Logs.Info);
   Logs.info (fun m -> m "Starting run");
-  App.empty
-  |> App.get "/entry" find_all
-  |> App.put "/entry" put_entry
+  App.empty |> App.get "/entry" find_all |> App.put "/entry" put_entry
   |> App.run_command
