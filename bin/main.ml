@@ -7,47 +7,41 @@ let convert_to_response entries =
   Lwt_result.return as_json
 
 let find_all _ =
-  Logs.info (fun m -> m "Starting run");
-
+  Logs.info (fun m -> m "Finding all");
   let get_all =
     let ( let* ) = Lwt_result.bind in
     let* conn = Util.connect () in
     let entries = Db.find_all conn in
     Lwt_result.bind entries convert_to_response
   in
-  let o =
-    Lwt.bind get_all (fun r ->
-        match r with Ok r -> Lwt.return r | Error _ -> raise @@ Failure "")
-  in
-  o
+  Lwt.bind get_all (fun r ->
+      match r with Ok r -> Lwt.return r | Error _ -> raise @@ Failure "")
 
 let put_entry req =
+  Logs.info (fun l -> l "adding entry");
   let insert =
     let open Lwt.Syntax in
     let+ json = Request.to_json_exn req in
-    let ( let* ) = Lwt_result.bind in
     let entry = Model.entry_of_yojson json in
+    (* manually declare let* as from Lwt_result as it's also available on the base Lwt *)
+    let ( let* ) = Lwt_result.bind in
     let* conn = Util.connect () in
     match entry with
     | Ok e -> Db.insert conn e.short_url e.target_url
-    | Error _ -> raise @@ Failure ""
+    | Error e -> raise @@ Failure e
   in
-  let bind_result insert_response =
+  let bind_insert insert_response =
     Lwt.bind insert_response (fun bind_response ->
         Lwt.return
         @@
         match bind_response with
-        | Ok _ -> Response.of_plain_text ""
-        | Error _ -> Response.of_plain_text "")
+        | Ok _ -> Response.of_plain_text "Hooray"
+        | Error _ ->
+            Response.of_plain_text ~status:`Bad_request
+              "Oh no something went wrong")
   in
 
-  Lwt.bind insert bind_result
-(* let _ = *)
-(*   Lwt.bind body (fun b -> *)
-(*       let _ = Logs.info (fun l -> l "body is %s" b) in *)
-(*       Lwt.return b) *)
-(* in *)
-(* Response.of_plain_text "hmmm" *)
+  Lwt.bind insert bind_insert
 
 let _ =
   Logs.set_reporter (Logs_fmt.reporter ());
