@@ -7,18 +7,18 @@
 (source
  (github username/reponame))
 
-(authors "Author Name")
+(authors "Luke McPhee")
 
-(maintainers "Maintainer Name")
+(maintainers "Luke McPhee")
 
-(license LICENSE)
+(license MIT)
 
-(documentation https://url/to/documentation)
+(documentation https://funwithfunctors.com)
 
 (package
  (name shorty)
- (synopsis "A short synopsis")
- (description "A longer description")
+ (synopsis "Simple url shortener")
+ (description "URL shortener using opium and caqti (v2.x)")
  (depends ocaml dune
   lwt
   lwt_ppx
