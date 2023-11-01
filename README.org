@@ -2,6 +2,8 @@
 #+DATE:2023-10-23
 #+AUTHOR:Luke McPhee
 
+As of the date of writing, there's not a lot of examples of examples available of webservers interacting with postgres using Caqti since it's recent update to version 2.x.
+There are quite a few breaking changes in the major version bump so this repo provides some examples of usage. I've written a blog post that goes into a little more detail describing how everything fits together [[https://funwithfunctors.com/2023/11/01/simple-back-end-web-stack-in-ocaml-postgres-caqti-v2-opium/][here]] 
 * Installing
 All dependencies can be installed with
 
