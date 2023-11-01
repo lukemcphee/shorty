@@ -4,20 +4,47 @@
 
 * Installing
 All dependencies can be installed with
-`opam install . --deps-only`
-
 
 #+begin_src sh
 opam install . --deps-only
 #+end_src
 
-MAKE SURE YOU INSTALL THE CORRECT DEP's
+* Running 
 
+In all cases, start up postgres via docker 
+#+begin_src sh
+  ./nuke_docker_and_restart.sh
+#+end_src
+** Main server
 
-let run = let conn = Util.connect_exn () in
-let result = Db.insert conn "hello" "world" in
-Lwt_main.run result;;
+#+begin_src sh
+   dune exec -- shorty
+#+end_src
 
-How to add in yojson
-(libraries  yojson core ppx_deriving_yojson.runtime)
-(preprocess (pps ppx_deriving_yojson))
+** Testing without server via utop
+
+#+begin_src sh
+  dune utop . 
+#+end_src
+
+#+begin_src ocaml
+  # open Repo;;
+
+  # let run = let conn = Util.connect_exn () in
+    let result = Db.insert conn "hello" "world" in
+    Lwt_main.run result;;
+    val run : (unit, [> Caqti_error.call_or_retrieve ]) result = Ok ()
+
+  # let run = let conn = Util.connect_exn () in
+    let result = Db.find_all conn  in
+    Lwt_main.run result;;
+    val run : (Db.Model.entry list, [> Caqti_error.call_or_retrieve ]) result =
+      Ok
+       [{Repo.Db.Model.short_url = "hello"; target_url = "vinnie"};
+        {Repo.Db.Model.short_url = "hello"; target_url = "world"}]
+#+end_src
+
+** Running unit tests
+#+begin_src sh
+  dune runtests
+#+end_src
