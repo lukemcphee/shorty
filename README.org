@@ -1,4 +1,4 @@
-#+TITLE:Simple url shortener
+#+TITLE:Simple url shortener server in OCaml backed by postgres, using opium and caqti
 #+DATE:2023-10-23
 #+AUTHOR:Luke McPhee
 
