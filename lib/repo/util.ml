@@ -1,6 +1,5 @@
 let get_uri () = "postgres://example-username:pass@localhost:5432/shorty-db"
 
-
 let str_error promise =
   Lwt.bind promise (fun res ->
       res |> Result.map_error Caqti_error.show |> Lwt.return)
